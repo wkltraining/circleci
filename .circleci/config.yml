@@ -34,14 +34,18 @@ jobs:
             echo "Node App Execution Complete."
 
       - run:
-          name: Dump Environment Variables
+          name: Logs
           command: |
-            mkdir /tmp/artifacts
-            printenv > /tmp/artifacts/env-vars.txt
+            mkdir -p /tmp/logs
+            echo "INFO: Server started..." > /tmp/logs/server.log
+            echo "WARN: Connection slow..." >> /tmp/logs/server.log
+            echo "ERROR: Something failed..." >> /tmp/logs/server.log
+            echo "DEBUG: Debugging app..." > /tmp/logs/debug.log
+            echo "INFO: Logs generated."
 
       - store_artifacts:
-          path: /tmp/artifacts
-          destination: env-vars-artifacts
+          path: /tmp/logs
+          destination: app-logs
           
 workflows:
   run-my-node-app-workflow:
