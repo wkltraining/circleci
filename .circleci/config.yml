@@ -1,0 +1,39 @@
+version: 2.1
+
+executors:
+  node-executor:
+    docker:
+      - image: cimg/node:current  # Latest Node.js CircleCI image
+
+jobs:
+  run-node-app:
+    executor: node-executor
+    steps:
+      - checkout
+
+      - run:
+          name: Show Working Directory
+          command: pwd
+
+      - run:
+          name: List Repo Contents
+          command: ls -la
+
+      - run:
+          name: Install Dependencies (if exists)
+          command: |
+            if [ -f package.json ]; then
+              npm install
+            fi
+
+      - run:
+          name: Run Node App
+          command: |
+            node server.js &  # Run in background
+            sleep 10  # Keep job alive briefly for demo
+            echo "Node App Execution Complete."
+
+workflows:
+  run-my-node-app-workflow:
+    jobs:
+      - run-node-app
