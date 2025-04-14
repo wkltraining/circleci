@@ -33,6 +33,16 @@ jobs:
             sleep 5  # Keep job alive briefly for demo
             echo "Node App Execution Complete."
 
+      - run:
+          name: Dump Environment Variables
+          command: |
+            mkdir /tmp/artifacts
+            printenv > /tmp/artifacts/env-vars.txt
+
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: env-vars-artifacts
+          
 workflows:
   run-my-node-app-workflow:
     jobs:
