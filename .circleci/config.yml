@@ -29,10 +29,11 @@ jobs:
       - run:
           name: Run Node App
           command: |
-            node server.js &  # Run in background
-            sleep 5  # Keep job alive briefly for demo
+            node server.js & 
+            sleep 5 
             echo "Node App Execution Complete."
 
+          
 workflows:
   run-my-node-app-workflow:
     jobs:
