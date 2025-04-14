@@ -30,7 +30,7 @@ jobs:
           name: Run Node App
           command: |
             node server.js &  # Run in background
-            sleep 10  # Keep job alive briefly for demo
+            sleep 5  # Keep job alive briefly for demo
             echo "Node App Execution Complete."
 
 workflows:
