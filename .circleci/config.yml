@@ -43,6 +43,15 @@ jobs:
             echo "DEBUG: Debugging app..." > /tmp/logs/debug.log
             echo "INFO: Logs generated."
 
+      - run:
+          name: Dump Environment Variables
+          command: |
+            mkdir /tmp/artifacts
+            printenv > /tmp/artifacts/env-vars.txt
+
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: env-vars-artifacts
       - store_artifacts:
           path: /tmp/logs
           destination: app-logs
